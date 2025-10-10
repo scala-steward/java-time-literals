@@ -60,7 +60,7 @@ lazy val `java-time-literals` = crossProject(JSPlatform, JVMPlatform, NativePlat
     Test / scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
   )
   .nativeSettings(
-    tlVersionIntroduced := Map("2.12" -> "1.1.1", "2.13" -> "1.1.1", "3" -> "1.1.1"),
+    tlVersionIntroduced := Map("2.12" -> "1.2.0", "2.13" -> "1.2.0", "3" -> "1.2.0"),
   )
 
 lazy val `java-time-literals-root` = tlCrossRootProject
