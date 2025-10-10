@@ -27,17 +27,15 @@ ThisBuild / startYear := Option(2021)
 ThisBuild / tlBaseVersion := "1.1"
 ThisBuild / tlCiReleaseBranches := Seq("main")
 
-ThisBuild / mergifyStewardConfig ~= {
-  _.map(_.copy(mergeMinors = true))
-}
+ThisBuild / mergifyStewardConfig ~= { _.map {
+  _.withMergeMinors(true)
+}}
 ThisBuild / mergifySuccessConditions += MergifyCondition.Custom("#approved-reviews-by>=1")
 ThisBuild / mergifyRequiredJobs ++= Seq("validate-steward")
 
 tpolecatScalacOptions += ScalacOptions.release("8")
 ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("17"))
 ThisBuild / githubWorkflowScalaVersions := Seq("3", "2.13", "2.12")
-
-ThisBuild / tlSonatypeUseLegacyHost := false
 
 lazy val `java-time-literals` = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("core"))
@@ -65,11 +63,7 @@ lazy val `java-time-literals` = crossProject(JSPlatform, JVMPlatform, NativePlat
     tlVersionIntroduced := Map("2.12" -> "1.1.1", "2.13" -> "1.1.1", "3" -> "1.1.1"),
   )
 
-lazy val `java-time-literals-root`: Project = (project in file("."))
-  .settings(
-    publish / skip := true,
-    publishArtifact := false,
-  )
+lazy val `java-time-literals-root` = tlCrossRootProject
   .aggregate(
-    `java-time-literals`.componentProjects.map(_.project) *
+    `java-time-literals`
   )
