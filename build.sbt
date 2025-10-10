@@ -33,7 +33,7 @@ ThisBuild / mergifyStewardConfig ~= { _.map {
 ThisBuild / mergifySuccessConditions += MergifyCondition.Custom("#approved-reviews-by>=1")
 ThisBuild / mergifyRequiredJobs ++= Seq("validate-steward")
 
-tpolecatScalacOptions += ScalacOptions.release("8")
+ThisBuild / tlJdkRelease := Option(8)
 ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("17"))
 ThisBuild / githubWorkflowScalaVersions := Seq("3", "2.13", "2.12")
 
