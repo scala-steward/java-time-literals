@@ -8,6 +8,7 @@ lazy val V = new {
   val literally = "1.2.0"
   val scalaJavaTime = "2.6.0"
   val munit = "1.2.1"
+  val munitScalacheck = "1.2.0"
 }
 
 ThisBuild / scalaVersion := V.Scalas.head
@@ -51,7 +52,7 @@ lazy val `java-time-literals` = crossProject(JSPlatform, JVMPlatform, NativePlat
           "org.typelevel" %%% "literally" % V.literally,
           "io.github.cquiroz" %%% "scala-java-time" % V.scalaJavaTime,
           "org.scalameta" %%% "munit" % V.munit % Test,
-          "org.scalameta" %%% "munit-scalacheck" % V.munit % Test,
+          "org.scalameta" %%% "munit-scalacheck" % V.munitScalacheck % Test,
           "io.github.cquiroz" %%% "scala-java-time-tzdb" % V.scalaJavaTime % Test,
         )
     },
